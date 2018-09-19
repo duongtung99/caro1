@@ -8,3 +8,13 @@ C:\Users\DUONG\source\repos\CoCaro\CoCaro\obj\Debug\CoCaro.csproj.GenerateResour
 C:\Users\DUONG\source\repos\CoCaro\CoCaro\obj\Debug\CoCaro.csproj.CoreCompileInputs.cache
 C:\Users\DUONG\source\repos\CoCaro\CoCaro\obj\Debug\CoCaro.exe
 C:\Users\DUONG\source\repos\CoCaro\CoCaro\obj\Debug\CoCaro.pdb
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.exe.config
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.exe
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.pdb
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.csprojAssemblyReference.cache
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.Form1.resources
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.Properties.Resources.resources
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.csproj.GenerateResource.cache
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.csproj.CoreCompileInputs.cache
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.exe
+C:\Users\VCCORP\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.pdb

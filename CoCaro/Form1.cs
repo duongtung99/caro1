@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CoCaro.Properties;
 
 namespace CoCaro
 {
@@ -45,7 +46,10 @@ namespace CoCaro
 
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
         {
-
+            Point point = e.Location;
+            caro.DanhCo(point.X, point.Y, 2, grs);
+            caro.ThangNgang();
+            //MessageBox.Show("Coordinates are: " + point);
         }
 
         private void label3_Click(object sender, EventArgs e)
