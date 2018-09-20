@@ -13,7 +13,7 @@ namespace CoCaro
     {
         List<int> playerX = new List<int>();
         List<int> playerO = new List<int>();
-
+        int[,] KeHuyDiet = new int[9,9];
         List<int> checkPlayer = new List<int>();
 
         private int chieu_rong;
@@ -25,6 +25,16 @@ namespace CoCaro
             _BanCo = new Banco(chieu_rong, chieu_cao);
             this.chieu_rong = chieu_rong;
             this.chieu_cao = chieu_cao;
+        }
+        public void check()
+        {
+            for(int i = 0; i < 9; i++)
+            {
+                for(int j = 0; j < 9; j++)
+                {
+                    KeHuyDiet[i,j] = 1;
+                }
+            }
         }
         public void vebanco(Graphics g)
         {
@@ -45,11 +55,22 @@ namespace CoCaro
             {
                 for (int j = 1; j <= chieu_cao; j++)
                 {
+                   
+
                     if ((x <= OCo._ChieuRong * i) && (y <= OCo._ChieuCao * j))
                     {
                         new_x = OCo._ChieuRong * (i - 1);
                         new_y = OCo._ChieuCao * (j - 1);
-                        goto Next;
+                        if (KeHuyDiet[i -1,j-1] == 1)
+                        {
+                            KeHuyDiet[i-1,j-1] = 2;
+                            goto Next;
+                        }
+
+                        else
+                        {
+                            return 0;
+                        }
                     }
                 }
             }

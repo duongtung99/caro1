@@ -19,6 +19,7 @@ namespace CoCaro
         // player turn
         int turn = 0;
         int player = 0;
+        public List<int> KeHuyDiet = new List<int>();
 
         public Form1()
         {
@@ -51,30 +52,41 @@ namespace CoCaro
         private void pnlBanCo_Paint(object sender, PaintEventArgs e)
         {
             caro.vebanco(grs);
+            caro.check();
         }
 
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
-
-            // tính turn của người chơi theo chẵn lẻ
-            if (turn % 2 == 0) // chẵn turn người chơi 1
+            if (turn % 2 == 0) //if turn is even
             {
                 player = 1;
-                turn++;
+                int vi_tri = caro.DanhCo(point.X, point.Y, player, grs);
+                if (vi_tri != 0) {
+                    bool win = caro.CheckWin(player, vi_tri);
+                    KeHuyDiet.Add(vi_tri);
+                    turn++;
+                    if (win)
+                    {
+                        MessageBox.Show("Player " + player + " won");
+                    }
+                }
             }
-            else // lẻ turn người chơi 2
+            else //otherwise its odd
             {
                 player = 2;
-                turn++;
-            }
 
-            // đánh cờ theo người chơi
-            int vi_tri = caro.DanhCo(point.X, point.Y, player, grs);
-            bool win = caro.CheckWin(player, vi_tri);
-            if (win)
-            {
-                MessageBox.Show("Player " + player + " won");
+                int vi_tri = caro.DanhCo(point.X, point.Y, player, grs);
+                if (vi_tri != 0)
+                {
+                    bool win = caro.CheckWin(player, vi_tri);
+                    KeHuyDiet.Add(vi_tri);
+                    turn++;
+                    if (win)
+                    {
+                        MessageBox.Show("Player " + player + " won");
+                    }
+                }
             }
         }
 
