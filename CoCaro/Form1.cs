@@ -30,14 +30,6 @@ namespace CoCaro
             grs = panelBanCo.CreateGraphics();
         }
 
-        private void fIleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text = "  The goal of the game is to order unbroken \n row of five signs horizontally, vertically, or \n  diagonally. You play by clicking with mouse \n on any empty field of the board. Then it is \n turn of Player 2 . And then it is your turn \n again and so on. ";

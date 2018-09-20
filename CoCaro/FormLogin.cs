@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace CoCaro
 {
     public partial class FormLogin : Form
     {
+        // init user_name
         public static string user_name = "";
 
+        // init LAN
+        LAN lan = new LAN();
 
         public FormLogin()
         {
             InitializeComponent();
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+            this.label4.Text = LAN.localIP;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -22,31 +28,24 @@ namespace CoCaro
 
             // ẩn cửa sổ 
             Hide();
-            
+
+            // chạy listener
+            string listenIP = textBox2.Text;
+            LAN.listenIP = listenIP;
+            lan.workerListener.RunWorkerAsync();
+
+            // kết nối tới đối thủ
+            lan.workerClient.RunWorkerAsync();
+
             // hiện cửa sổ form1
             Form1 form = new Form1();
             //form.ShowDialog();
         }
 
-        
-        private string GetLocalIp()
-        {
-            string localIP;
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
-            socket.Connect("8.8.8.8", 65530);
-            IPEndPoint endPoint = socket.LocalEndPoint as IPEndPoint;
-            localIP = endPoint.Address.ToString();
-            return localIP;
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void FormLogin_Load(object sender, EventArgs e)
-        {
-            this.label4.Text = GetLocalIp();
+            // lưu giá trị người dùng nhập vào 
+            user_name = textBox2.Text;
         }
     }
 }

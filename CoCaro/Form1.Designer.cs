@@ -71,7 +71,6 @@
             this.fIleToolStripMenuItem.Name = "fIleToolStripMenuItem";
             this.fIleToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
             this.fIleToolStripMenuItem.Text = "File";
-            this.fIleToolStripMenuItem.Click += new System.EventHandler(this.fIleToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 

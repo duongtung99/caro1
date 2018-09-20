@@ -2,3 +2,8 @@
 *.cache
 *.ide-shm
 *.exe
+*.ide
+.vs/CoCaro/v15/.suo
+.vs/CoCaro/v15/Server/sqlite3/storage.ide-wal
+CoCaro/bin/Debug/CoCaro.exe
+CoCaro/bin/Debug/CoCaro.pdb

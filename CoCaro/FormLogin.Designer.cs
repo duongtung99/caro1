@@ -92,7 +92,7 @@
             this.groupBox1.Size = new System.Drawing.Size(274, 144);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Vào Phòng";
+            this.groupBox1.Text = "Login";
             // 
             // label4
             // 
@@ -124,9 +124,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(24, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 16);
+            this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Nhập ip host:";
+            this.label2.Text = "Nhập ip đối thủ:";
             // 
             // FormLogin
             // 
