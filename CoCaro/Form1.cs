@@ -65,6 +65,9 @@ namespace CoCaro
                     if (win)
                     {
                         MessageBox.Show("Player " + player + " won");
+                        caro.NewGame(grs);
+                        caro.vebanco(grs);
+                        caro.check(soDong, soCot);
                     }
                 }
             }
@@ -81,6 +84,9 @@ namespace CoCaro
                     if (win)
                     {
                         MessageBox.Show("Player " + player + " won");
+                        caro.NewGame(grs);
+                        caro.vebanco(grs);
+                        caro.check(soDong, soCot);
                     }
                 }
             }
@@ -93,8 +99,9 @@ namespace CoCaro
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Color a = Color.Lime;
-            grs.Clear(a);
+            caro.NewGame(grs);
+            caro.vebanco(grs);
+            caro.check(soDong, soCot);
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
