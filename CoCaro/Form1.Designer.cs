@@ -118,6 +118,7 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "New";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -174,7 +175,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(434, 63);
+            this.label2.Location = new System.Drawing.Point(432, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(139, 37);
             this.label2.TabIndex = 8;
@@ -212,7 +213,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(353, 294);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form1
             // 

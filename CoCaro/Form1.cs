@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CoCaro.Properties;
 
 namespace CoCaro
 {
@@ -37,15 +31,13 @@ namespace CoCaro
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text = "  The goal of the game is to order unbroken \n row of five signs horizontally, vertically, or \n  diagonally. You play by clicking with mouse \n on any empty field of the board. Then it is \n turn of Player 2 . And then it is your turn \n again and so on. ";
+            label2.Text = FormLogin.user_name;
         }
 
 
@@ -93,6 +85,12 @@ namespace CoCaro
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Color a = Color.Lime;
+            grs.Clear(a);
         }
     }
 }

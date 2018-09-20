@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using CoCaro.Properties;
 
 namespace CoCaro
@@ -61,9 +56,9 @@ namespace CoCaro
                     {
                         new_x = OCo._ChieuRong * (i - 1);
                         new_y = OCo._ChieuCao * (j - 1);
-                        if (KeHuyDiet[i -1,j-1] == 1)
+                        if (KeHuyDiet[i - 1, j - 1] == 1)
                         {
-                            KeHuyDiet[i-1,j-1] = 2;
+                            KeHuyDiet[i - 1, j - 1] = 2;
                             goto Next;
                         }
 
@@ -133,31 +128,31 @@ namespace CoCaro
                 }
 
                 // check hàng chéo phải sang trái
-                if (checkPlayer.Contains(vi_tri + i * 8) &&
-                checkPlayer.Contains(vi_tri + (i + 1) * 8) &&
-                checkPlayer.Contains(vi_tri + (i + 2) * 8) &&
-                checkPlayer.Contains(vi_tri + (i + 3) * 8) &&
-                checkPlayer.Contains(vi_tri + (i + 4) * 8))
+                if (checkPlayer.Contains(vi_tri + i * (chieu_rong - 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * (chieu_rong - 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * (chieu_rong - 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * (chieu_rong - 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * (chieu_rong - 1)))
                 {
                     return true;
                 }
 
                 // check hàng dọc
-                if (checkPlayer.Contains(vi_tri + i * 9) &&
-                checkPlayer.Contains(vi_tri + (i + 1) * 9) &&
-                checkPlayer.Contains(vi_tri + (i + 2) * 9) &&
-                checkPlayer.Contains(vi_tri + (i + 3) * 9) &&
-                checkPlayer.Contains(vi_tri + (i + 4) * 9))
+                if (checkPlayer.Contains(vi_tri + i * chieu_rong) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * chieu_rong) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * chieu_rong) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * chieu_rong) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * chieu_rong))
                 {
                     return true;
                 }
 
                 // check hàng chéo trái sang phải
-                if (checkPlayer.Contains(vi_tri + i * 10) &&
-                checkPlayer.Contains(vi_tri + (i + 1) * 10) &&
-                checkPlayer.Contains(vi_tri + (i + 2) * 10) &&
-                checkPlayer.Contains(vi_tri + (i + 3) * 10) &&
-                checkPlayer.Contains(vi_tri + (i + 4) * 10))
+                if (checkPlayer.Contains(vi_tri + i * (chieu_rong + 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * (chieu_rong + 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * (chieu_rong + 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * (chieu_rong + 1)) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * (chieu_rong + 1)))
                 {
                     return true;
                 }
