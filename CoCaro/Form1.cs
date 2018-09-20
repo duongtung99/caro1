@@ -18,7 +18,11 @@ namespace CoCaro
         public Form1()
         {
             InitializeComponent();
-            caro = new Caro();
+
+            // khởi tạo bàn cờ caro 9 ô (chiều rộng x chiều dài)
+            caro = new Caro(9, 9);
+
+            // vẽ bàn cờ
             grs = panelBanCo.CreateGraphics();
         }
 

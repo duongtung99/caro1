@@ -12,11 +12,15 @@ namespace CoCaro
     class Caro
     {
         List<int> ListViTriCo = new List<int>();
+        private int chieu_rong;
+        private int chieu_cao;
 
         private Banco _BanCo;
-        public  Caro ()
+        public  Caro (int chieu_rong, int chieu_cao)
         {
-            _BanCo = new Banco(20, 20);
+            _BanCo = new Banco(chieu_rong, chieu_cao);
+            this.chieu_rong = chieu_rong;
+            this.chieu_cao = chieu_cao;
         }
         public void vebanco(Graphics g)
         {
@@ -33,9 +37,9 @@ namespace CoCaro
             // tính toán vị trí đặt ảnh theo vị trí click chuột
             int new_x = 0;
             int new_y = 0;
-            for (int i = 1; i <= 9; i++)
+            for (int i = 1; i <= chieu_rong; i++)
             {
-                for (int j = 1; j <= 9; j++)
+                for (int j = 1; j <= chieu_cao; j++)
                 {
                     if ((x <= OCo._ChieuRong * i) && (y <= OCo._ChieuCao * j))
                     {
@@ -64,7 +68,7 @@ namespace CoCaro
             }
 
             // lưu vị trí theo thứ tự 1-> 81 vào List
-            int vi_tri = (new_x + new_y * 9 + 60) / 60;
+            int vi_tri = (new_x + new_y * chieu_rong + 60) / 60;
 
             ListViTriCo.Add(vi_tri);
             //MessageBox.Show(Convert.ToString(vi_tri));

@@ -12,12 +12,7 @@ namespace CoCaro
         private int _SoDong;
         private int _SoCot;
 
-        public Banco()
-        {
-            _SoCot = 0;
-            _SoDong = 0;
-        }
-        public Banco(int Sodong, int Socot)
+        public Banco(int Socot, int Sodong)
         {
             _SoDong = Sodong;
             _SoCot = Socot;
