@@ -15,6 +15,11 @@ namespace CoCaro
     {
         private Caro caro;
         private Graphics grs;
+
+        // player turn
+        int turn = 0;
+        int player = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -51,11 +56,22 @@ namespace CoCaro
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
-            int vi_tri = caro.DanhCo(point.X, point.Y, 2, grs);
-            bool win = caro.CheckWin(vi_tri);
+            if (turn % 2 == 0) //if turn is even
+            {
+                player = 1;
+                turn++;
+            }
+            else //otherwise its odd
+            {
+                player = 2;
+                turn++;
+            }
+
+            int vi_tri = caro.DanhCo(point.X, point.Y, player, grs);
+            bool win = caro.CheckWin(player, vi_tri);
             if (win)
             {
-                MessageBox.Show("Win");
+                MessageBox.Show("Player " + player + " won");
             }
         }
 

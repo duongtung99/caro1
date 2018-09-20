@@ -11,7 +11,11 @@ namespace CoCaro
 {
     class Caro
     {
-        List<int> ListViTriCo = new List<int>();
+        List<int> playerX = new List<int>();
+        List<int> playerO = new List<int>();
+
+        List<int> checkPlayer = new List<int>();
+
         private int chieu_rong;
         private int chieu_cao;
 
@@ -70,52 +74,69 @@ namespace CoCaro
             // lưu vị trí theo thứ tự 1-> 81 vào List
             int vi_tri = (new_x + new_y * chieu_rong + 60) / 60;
 
-            ListViTriCo.Add(vi_tri);
+            // lưu vị trí người đánh vào list của ng đó
+            if (player == 1)
+            {
+                playerX.Add(vi_tri);
+            }
+            else if (player == 2)
+            {
+                playerO.Add(vi_tri);
+            }
+            //checkPlayer.Add(vi_tri);
             //MessageBox.Show(Convert.ToString(vi_tri));
             return vi_tri;
         }
 
         // check thắng theo hàng
-        public bool CheckWin(int vi_tri)
+        public bool CheckWin(int player, int vi_tri)
         {
+            if (player == 1)
+            {
+                checkPlayer = playerX;
+            } else if (player == 2)
+            {
+                checkPlayer = playerO;
+            }
+
             for (int i = -4; i < 1; i++)
             {
-                // check hàng ListViTriCo
-                if (ListViTriCo.Contains(vi_tri + i) &&
-                ListViTriCo.Contains(vi_tri + i + 1) &&
-                ListViTriCo.Contains(vi_tri + i + 2) &&
-                ListViTriCo.Contains(vi_tri + i + 3) &&
-                ListViTriCo.Contains(vi_tri + i + 4))
+                // check hàng checkPlayer
+                if (checkPlayer.Contains(vi_tri + i) &&
+                checkPlayer.Contains(vi_tri + i + 1) &&
+                checkPlayer.Contains(vi_tri + i + 2) &&
+                checkPlayer.Contains(vi_tri + i + 3) &&
+                checkPlayer.Contains(vi_tri + i + 4))
                 {
                     return true;
                 }
 
                 // check hàng chéo phải sang trái
-                if (ListViTriCo.Contains(vi_tri + i * 8) &&
-                ListViTriCo.Contains(vi_tri + (i + 1) * 8) &&
-                ListViTriCo.Contains(vi_tri + (i + 2) * 8) &&
-                ListViTriCo.Contains(vi_tri + (i + 3) * 8) &&
-                ListViTriCo.Contains(vi_tri + (i + 4) * 8))
+                if (checkPlayer.Contains(vi_tri + i * 8) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * 8) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * 8) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * 8) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * 8))
                 {
                     return true;
                 }
 
                 // check hàng dọc
-                if (ListViTriCo.Contains(vi_tri + i * 9) &&
-                ListViTriCo.Contains(vi_tri + (i + 1) * 9) &&
-                ListViTriCo.Contains(vi_tri + (i + 2) * 9) &&
-                ListViTriCo.Contains(vi_tri + (i + 3) * 9) &&
-                ListViTriCo.Contains(vi_tri + (i + 4) * 9))
+                if (checkPlayer.Contains(vi_tri + i * 9) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * 9) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * 9) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * 9) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * 9))
                 {
                     return true;
                 }
 
                 // check hàng chéo trái sang phải
-                if (ListViTriCo.Contains(vi_tri + i * 10) &&
-                ListViTriCo.Contains(vi_tri + (i + 1) * 10) &&
-                ListViTriCo.Contains(vi_tri + (i + 2) * 10) &&
-                ListViTriCo.Contains(vi_tri + (i + 3) * 10) &&
-                ListViTriCo.Contains(vi_tri + (i + 4) * 10))
+                if (checkPlayer.Contains(vi_tri + i * 10) &&
+                checkPlayer.Contains(vi_tri + (i + 1) * 10) &&
+                checkPlayer.Contains(vi_tri + (i + 2) * 10) &&
+                checkPlayer.Contains(vi_tri + (i + 3) * 10) &&
+                checkPlayer.Contains(vi_tri + (i + 4) * 10))
                 {
                     return true;
                 }
