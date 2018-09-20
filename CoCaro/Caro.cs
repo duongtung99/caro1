@@ -104,7 +104,15 @@ namespace CoCaro
             //MessageBox.Show(Convert.ToString(vi_tri));
             return vi_tri;
         }
-
+        public void NewGame(Graphics g)
+        {
+            checkPlayer.Clear();
+            playerO.Clear();
+            playerX.Clear();
+            Color a = Color.Lime;
+            g.Clear(a);
+            
+        }
         // check thắng theo hàng
         public bool CheckWin(int player, int vi_tri)
         {
