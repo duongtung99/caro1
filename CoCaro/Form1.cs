@@ -56,17 +56,20 @@ namespace CoCaro
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
-            if (turn % 2 == 0) //if turn is even
+
+            // tính turn của người chơi theo chẵn lẻ
+            if (turn % 2 == 0) // chẵn turn người chơi 1
             {
                 player = 1;
                 turn++;
             }
-            else //otherwise its odd
+            else // lẻ turn người chơi 2
             {
                 player = 2;
                 turn++;
             }
 
+            // đánh cờ theo người chơi
             int vi_tri = caro.DanhCo(point.X, point.Y, player, grs);
             bool win = caro.CheckWin(player, vi_tri);
             if (win)
