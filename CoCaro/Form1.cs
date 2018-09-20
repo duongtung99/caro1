@@ -10,6 +10,10 @@ namespace CoCaro
         private Caro caro;
         private Graphics grs;
 
+        // xac dinh so dong so cot
+        private int soDong = 9;
+        private int soCot = 9;
+
         // player turn
         int turn = 0;
         int player = 0;
@@ -20,7 +24,7 @@ namespace CoCaro
             InitializeComponent();
 
             // khởi tạo bàn cờ caro 9 ô (chiều rộng x chiều dài)
-            caro = new Caro(9, 9);
+            caro = new Caro(soDong, soCot);
 
             // vẽ bàn cờ
             grs = panelBanCo.CreateGraphics();
@@ -44,7 +48,7 @@ namespace CoCaro
         private void pnlBanCo_Paint(object sender, PaintEventArgs e)
         {
             caro.vebanco(grs);
-            caro.check();
+            caro.check(soDong,soCot);
         }
 
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
@@ -91,6 +95,11 @@ namespace CoCaro
         {
             Color a = Color.Lime;
             grs.Clear(a);
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

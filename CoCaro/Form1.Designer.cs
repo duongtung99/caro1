@@ -56,9 +56,10 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1006, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1013, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fIleToolStripMenuItem
             // 
@@ -141,7 +142,7 @@
             this.panelBanCo.Location = new System.Drawing.Point(439, 143);
             this.panelBanCo.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.panelBanCo.Name = "panelBanCo";
-            this.panelBanCo.Size = new System.Drawing.Size(600, 540);
+            this.panelBanCo.Size = new System.Drawing.Size(540, 540);
             this.panelBanCo.TabIndex = 6;
             this.panelBanCo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBanCo_Paint);
             this.panelBanCo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panelBanCo_MouseClick);
@@ -220,7 +221,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1006, 710);
+            this.ClientSize = new System.Drawing.Size(1013, 710);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
