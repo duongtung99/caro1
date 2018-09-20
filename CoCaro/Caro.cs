@@ -11,7 +11,7 @@ namespace CoCaro
 {
     class Caro
     {
-        List<int> ngang = new List<int>();
+        List<int> ListViTriCo = new List<int>();
 
         private Banco _BanCo;
         public  Caro ()
@@ -23,11 +23,14 @@ namespace CoCaro
             _BanCo.VeBanCo(g);
         }
 
-        public void DanhCo(int x, int y, int player, Graphics g)
+        // thuật toán đánh cờ
+        public int DanhCo(int x, int y, int player, Graphics g)
         {
+            // lấy ảnh từ Resources
             Bitmap player_x = Resources.x;
             Bitmap player_o = Resources.o;
 
+            // tính toán vị trí đặt ảnh theo vị trí click chuột
             int new_x = 0;
             int new_y = 0;
             for (int i = 1; i <= 9; i++)
@@ -60,17 +63,61 @@ namespace CoCaro
                 g.DrawImage(player_o, rect);
             }
 
+            // lưu vị trí theo thứ tự 1-> 81 vào List
             int vi_tri = (new_x + new_y * 9 + 60) / 60;
 
-            ngang.Add(vi_tri);
-            MessageBox.Show(Convert.ToString(vi_tri));
+            ListViTriCo.Add(vi_tri);
+            //MessageBox.Show(Convert.ToString(vi_tri));
+            return vi_tri;
         }
 
-        public void ThangNgang()
+        // check thắng theo hàng
+        public bool CheckWin(int vi_tri)
         {
-            
+            for (int i = -4; i < 1; i++)
+            {
+                // check hàng ListViTriCo
+                if (ListViTriCo.Contains(vi_tri + i) &&
+                ListViTriCo.Contains(vi_tri + i + 1) &&
+                ListViTriCo.Contains(vi_tri + i + 2) &&
+                ListViTriCo.Contains(vi_tri + i + 3) &&
+                ListViTriCo.Contains(vi_tri + i + 4))
+                {
+                    return true;
+                }
 
-            
+                // check hàng chéo phải sang trái
+                if (ListViTriCo.Contains(vi_tri + i * 8) &&
+                ListViTriCo.Contains(vi_tri + (i + 1) * 8) &&
+                ListViTriCo.Contains(vi_tri + (i + 2) * 8) &&
+                ListViTriCo.Contains(vi_tri + (i + 3) * 8) &&
+                ListViTriCo.Contains(vi_tri + (i + 4) * 8))
+                {
+                    return true;
+                }
+
+                // check hàng dọc
+                if (ListViTriCo.Contains(vi_tri + i * 9) &&
+                ListViTriCo.Contains(vi_tri + (i + 1) * 9) &&
+                ListViTriCo.Contains(vi_tri + (i + 2) * 9) &&
+                ListViTriCo.Contains(vi_tri + (i + 3) * 9) &&
+                ListViTriCo.Contains(vi_tri + (i + 4) * 9))
+                {
+                    return true;
+                }
+
+                // check hàng chéo trái sang phải
+                if (ListViTriCo.Contains(vi_tri + i * 10) &&
+                ListViTriCo.Contains(vi_tri + (i + 1) * 10) &&
+                ListViTriCo.Contains(vi_tri + (i + 2) * 10) &&
+                ListViTriCo.Contains(vi_tri + (i + 3) * 10) &&
+                ListViTriCo.Contains(vi_tri + (i + 4) * 10))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

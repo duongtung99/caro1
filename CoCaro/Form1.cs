@@ -47,9 +47,12 @@ namespace CoCaro
         private void panelBanCo_MouseClick(object sender, MouseEventArgs e)
         {
             Point point = e.Location;
-            caro.DanhCo(point.X, point.Y, 2, grs);
-            caro.ThangNgang();
-            //MessageBox.Show("Coordinates are: " + point);
+            int vi_tri = caro.DanhCo(point.X, point.Y, 2, grs);
+            bool win = caro.CheckWin(vi_tri);
+            if (win)
+            {
+                MessageBox.Show("Win");
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
