@@ -27,7 +27,7 @@ namespace CoCaro
             user_name = textBox1.Text;
 
             // ẩn cửa sổ 
-            Hide();
+            //Hide();
 
             // chạy listener
             string listenIP = textBox2.Text;
@@ -39,7 +39,7 @@ namespace CoCaro
 
             // hiện cửa sổ form1
             Form1 form = new Form1();
-            //form.ShowDialog();
+            form.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

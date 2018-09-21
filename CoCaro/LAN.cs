@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace CoCaro
@@ -14,44 +15,28 @@ namespace CoCaro
         // init local ip
         public static string localIP;
 
-        // init listener
-        public static string listenIP { get; set; }
-        public TcpListener listener = null;
+        // port and broadcast
+        const int port = 1234;
+        const string broadCastAddress = "255.255.255.255";
 
-        // init client
-        TcpClient client = null;
+        // gửi lệnh từ thread này qua thread khác
+        delegate void AddMessage(string message);
 
-        // init worker
-        public BackgroundWorker workerListener = null;
-        public BackgroundWorker workerClient = null;
+        // init receiver
+        UdpClient receivingClient;
+
+        // init sender
+        UdpClient sendingClient;
+
+        // tạo thread riêng cho việc nhận data
+        Thread receivingThread;
 
         public LAN()
         {
-            InitWorker();
             GetLocalIp();
         }
 
-        public void InitWorker()
-        {
-            // create object worker
-            workerListener = new BackgroundWorker
-            {
-                WorkerSupportsCancellation = true
-            };
-
-            workerClient = new BackgroundWorker
-            {
-                WorkerSupportsCancellation = true
-            };
-
-            // add work
-            workerListener.DoWork += WorkerHost;
-            workerClient.DoWork += WorkerClient;
-
-            // get handle and set nox title
-            //worker1.RunWorkerAsync();
-        }
-
+        // lấy ip trong mạng lan
         public static void GetLocalIp()
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0);
@@ -60,45 +45,42 @@ namespace CoCaro
             localIP = endPoint.Address.ToString();
         }
 
-        private void WorkerHost(object sender, DoWorkEventArgs e)
+        // khởi tạo sender
+        private void InitSender()
         {
-            // đặt ip port
-            int port = 1234;
-            IPAddress localAddress = IPAddress.Parse(localIP);
+            sendingClient = new UdpClient(broadCastAddress, port);
+            sendingClient.EnableBroadcast = true;
+        }
 
-            // khởi động Host
-            listener = new TcpListener(localAddress, port);
-            listener.Start();
+        // khởi tạo receiver
+        private void InitReceiver()
+        {
+            receivingClient = new UdpClient(port);
 
-            // buff đọc ghi data
-            Byte[] bytes = new Byte[256];
-            String data = null;
+            ThreadStart start = new ThreadStart(Receiver);
+            receivingThread = new Thread(start);
+            receivingThread.IsBackground = true;
+            receivingThread.Start();
+        }
 
-            while(true)
-            {   
-                // đợi client kết nối
-                TcpClient client = listener.AcceptTcpClient();
+        private void Receiver()
+        {
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, port);
+            AddMessage messageDelegate = MessageReceived;
 
-                data = null;
+            while (true)
+            {
+                byte[] data = receivingClient.Receive(ref endPoint);
+                string message = Encoding.ASCII.GetString(data);
+                myform.Invoke(messageDelegate, message);
 
-                // tạo stream obj cho việc đọc ghi
-                NetworkStream stream = client.GetStream();
-
-                int i;
-                while ((i = stream.Read(bytes, 0, bytes.Length))!= 0) {
-                    // chuyển byte thành ASCII string
-                    data = Encoding.ASCII.GetString(bytes, 0, i);
-
-                    // do something here
-                }
             }
         }
 
-        private void WorkerClient(object sender, DoWorkEventArgs e)
+        private void MessageReceived(string mess)
         {
-            // đặt ip port
-            int port = 1234;
-            client = new TcpClient(listenIP, port);
+            // do something with the incoming mess
+            myform. += mess + "\n";
         }
 
         public void SendData(string mess)
