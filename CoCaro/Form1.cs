@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CoCaro
@@ -19,6 +20,9 @@ namespace CoCaro
         int player = 0;
         public List<int> KeHuyDiet = new List<int>();
 
+        // check player name join
+        Thread checkPlayerNameThread = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -33,7 +37,34 @@ namespace CoCaro
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text = "  The goal of the game is to order unbroken \n row of five signs horizontally, vertically, or \n  diagonally. You play by clicking with mouse \n on any empty field of the board. Then it is \n turn of Player 2 . And then it is your turn \n again and so on. ";
-            label2.Text = FormLogin.user_name;
+            InitNameChecker();
+        }
+
+
+        private void InitNameChecker()
+        {
+            ThreadStart start = new ThreadStart(GetPlayerName);
+            checkPlayerNameThread = new Thread(start);
+            checkPlayerNameThread.IsBackground = true;
+            checkPlayerNameThread.Start();
+        }
+
+        private void GetPlayerName()
+        {
+            while(true)
+            {
+                // đặt hostname
+                Invoke((MethodInvoker)delegate ()
+                {
+                    label2.Text = FormLogin.host_name;
+                });
+
+                // đặt joinname
+                Invoke((MethodInvoker)delegate ()
+                {
+                    label3.Text = FormLogin.join_name;
+                });
+            }
         }
 
 
@@ -99,6 +130,11 @@ namespace CoCaro
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            checkPlayerNameThread.Abort();
         }
     }
 }
