@@ -6,20 +6,20 @@ namespace CoCaro
 {
     class Caro
     {
-        List<int> playerX = new List<int>();
-        List<int> playerO = new List<int>();
-        int[,] keHuyDiet;
+        static List<int> playerX = new List<int>();
+        static List<int> playerO = new List<int>();
+        static int[,] keHuyDiet;
         List<int> checkPlayer = new List<int>();
 
-        private int chieu_rong;
-        private int chieu_cao;
+        private static int chieu_rong;
+        private static int chieu_cao;
 
         private Banco _BanCo;
         public  Caro (int chieu_rong, int chieu_cao)
         {
             _BanCo = new Banco(chieu_rong, chieu_cao);
-            this.chieu_rong = chieu_rong;
-            this.chieu_cao = chieu_cao;
+            Caro.chieu_rong = chieu_rong;
+            Caro.chieu_cao = chieu_cao;
         }
         public void check(int soDong,int soCot)
         {
@@ -38,7 +38,7 @@ namespace CoCaro
         }
 
         // thuật toán đánh cờ
-        public int DanhCo(int x, int y, int player, Graphics g)
+        public static int DanhCo(int x, int y, int player, Graphics g)
         {
             // lấy ảnh từ Resources
             Bitmap player_x = Resources.x;
@@ -104,6 +104,7 @@ namespace CoCaro
             //MessageBox.Show(Convert.ToString(vi_tri));
             return vi_tri;
         }
+
         public void NewGame(Graphics g)
         {
             checkPlayer.Clear();

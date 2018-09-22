@@ -9,8 +9,7 @@ namespace CoCaro
         public static string host_name = "";
         public static string join_name = "";
 
-        // init LAN
-        LAN lan = new LAN();
+        public static int player;
 
         public FormLogin()
         {
@@ -19,11 +18,11 @@ namespace CoCaro
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
+            // init ip lan
+            LAN.GetLocalIp();
+
             // show local ip
             this.label4.Text = LAN.localIP;
-
-            // init receiver
-            lan.InitReceiver();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,9 +30,10 @@ namespace CoCaro
             // lưu giá trị người dùng nhập vào 
             join_name = "";
             host_name = textBox1.Text;
+            player = 1;
 
-            // init sender
-            lan.InitSender("broadcast");
+            // init wait for client
+            LAN.InitWaitForClient();
 
             // hiện cửa sổ form1
             Form1 form = new Form1();
@@ -45,16 +45,16 @@ namespace CoCaro
             // lưu giá trị người dùng nhập vào
             host_name = "";
             join_name = textBox1.Text;
+            player = 2;
 
-            // chạy listener
+            // lấy ip host
             string hostIP = textBox2.Text;
 
-            // init sender
-            lan.InitSender(hostIP);
+            // chào host và đưa host local ip
+            LAN.InitHelloHost(hostIP);
 
-            // hỏi host thông tin người chơi host
-            lan.SendData("get:hostname");
-            lan.SendData("set:joinname:" + join_name);
+            // init receiver
+            LAN.InitReceiver(hostIP);
 
             // hiện cửa sổ form1
             Form1 form = new Form1();
