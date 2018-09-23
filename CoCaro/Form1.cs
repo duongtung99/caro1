@@ -12,8 +12,8 @@ namespace CoCaro
         public static Graphics grs;
 
         // xac dinh so dong so cot
-        private int soDong = 9;
-        private int soCot = 9;
+        private int soDong = 30;
+        private int soCot = 30;
 
         // player turn
         public static int turn = 0;
@@ -131,6 +131,20 @@ namespace CoCaro
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             checkPlayerNameThread.Abort();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult mess = MessageBox.Show("Are you sure that you want to exit this game ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (mess == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

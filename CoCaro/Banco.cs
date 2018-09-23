@@ -29,10 +29,6 @@ namespace CoCaro
                 g.DrawLine(Program.pen, 0, j * OCo._ChieuCao, _SoCot * OCo._ChieuRong, j * OCo._ChieuCao );
             }
         }
-
-        public void play(Graphics g)
-        {
-
-        }
+        
     }
 }

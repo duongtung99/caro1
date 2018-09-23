@@ -60,5 +60,10 @@ namespace CoCaro
             Form1 form = new Form1();
             form.ShowDialog();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

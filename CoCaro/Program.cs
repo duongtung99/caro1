@@ -17,7 +17,7 @@ namespace CoCaro
 
         static void Main()
         {
-            pen = new Pen(Color.Red);
+            pen = new Pen(Color.White);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());

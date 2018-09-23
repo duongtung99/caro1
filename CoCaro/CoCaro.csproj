@@ -109,5 +109,41 @@
   <ItemGroup>
     <None Include="Resources\x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unnamed.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper-backgrounds.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Checkerboard_Flooring_Forest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_pro%27.jpg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\de-thuong-4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YRhNz.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-cancel-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_xbox_386288.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\35650813.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
