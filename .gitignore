@@ -7,3 +7,17 @@
 .vs/CoCaro/v15/Server/sqlite3/storage.ide-wal
 CoCaro/bin/Debug/CoCaro.exe
 CoCaro/bin/Debug/CoCaro.pdb
+.vs/CoCaro/v15/.suo
+*.ide
+*.ide-shm
+*.exe
+*.pdb
+CoCaro/obj/Debug/CoCaro.csproj.FileListAbsolute.txt
+CoCaro/obj/Debug/CoCaro.csproj.GenerateResource.cache
+CoCaro/obj/Debug/CoCaro.exe
+CoCaro/obj/Debug/CoCaro.Form1.resources
+CoCaro/obj/Debug/CoCaro.FormLogin.resources
+CoCaro/obj/Debug/CoCaro.pdb
+CoCaro/obj/Debug/CoCaro.Properties.Resources.resources
+CoCaro/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+CoCaro/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
