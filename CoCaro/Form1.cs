@@ -12,8 +12,9 @@ namespace CoCaro
         public static Graphics grs;
 
         // xac dinh so dong so cot
-        public static int soDong = 9;
-        public static int soCot = 9;
+        public static int soDong = 30;
+        public static int soCot = 30;
+
 
         // player turn
         public static int turn = 0;
@@ -163,6 +164,20 @@ namespace CoCaro
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult mess = MessageBox.Show("Are you sure that you want to exit this game ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (mess == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

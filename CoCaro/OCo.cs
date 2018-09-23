@@ -9,8 +9,8 @@ namespace CoCaro
 {
     class OCo
     {
-        public const int _ChieuRong = 60;
-        public const int _ChieuCao = 60;
+        public const int _ChieuRong = 30;
+        public const int _ChieuCao = 30;
 
         private int _Dong;
         public int Dong

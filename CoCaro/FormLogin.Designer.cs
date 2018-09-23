@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,12 +43,15 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 162);
+            this.button1.BackColor = System.Drawing.Color.LimeGreen;
+            this.button1.Font = new System.Drawing.Font("Papyrus", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(12, 186);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(101, 39);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Tạo";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "Create";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
@@ -70,12 +74,15 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(185, 162);
+            this.button2.BackColor = System.Drawing.Color.LimeGreen;
+            this.button2.Font = new System.Drawing.Font("Papyrus", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Location = new System.Drawing.Point(185, 186);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(101, 39);
             this.button2.TabIndex = 3;
-            this.button2.Text = "Kết nối";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Connect";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox1
@@ -89,7 +96,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(274, 144);
+            this.groupBox1.Size = new System.Drawing.Size(274, 155);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
@@ -106,15 +113,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 108);
+            this.label3.Location = new System.Drawing.Point(24, 122);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Ip của bạn:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(137, 65);
+            this.textBox2.Location = new System.Drawing.Point(137, 79);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(122, 22);
             this.textBox2.TabIndex = 4;
@@ -122,7 +130,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(24, 68);
+            this.label2.Location = new System.Drawing.Point(24, 85);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 3;
@@ -132,10 +140,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 213);
+            this.BackgroundImage = global::CoCaro.Properties.Resources._35650813;
+            this.ClientSize = new System.Drawing.Size(303, 248);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.Load += new System.EventHandler(this.FormLogin_Load);
