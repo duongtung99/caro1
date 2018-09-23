@@ -60,3 +60,14 @@ C:\Users\Kut3No1\Documents\GitHub\caro1\CoCaro\obj\Debug\CoCaro.pdb
 C:\Users\Kut3No1\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.exe.config
 C:\Users\Kut3No1\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.exe
 C:\Users\Kut3No1\Documents\GitHub\caro1\CoCaro\bin\Debug\CoCaro.pdb
+D:\caor1\caro1\CoCaro\bin\Debug\CoCaro.exe.config
+D:\caor1\caro1\CoCaro\bin\Debug\CoCaro.exe
+D:\caor1\caro1\CoCaro\bin\Debug\CoCaro.pdb
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.csprojAssemblyReference.cache
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.Form1.resources
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.FormLogin.resources
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.Properties.Resources.resources
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.csproj.GenerateResource.cache
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.csproj.CoreCompileInputs.cache
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.exe
+D:\caor1\caro1\CoCaro\obj\Debug\CoCaro.pdb
