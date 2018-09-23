@@ -9,18 +9,21 @@ namespace CoCaro
         static List<int> playerX = new List<int>();
         static List<int> playerO = new List<int>();
         static int[,] keHuyDiet;
-        List<int> checkPlayer = new List<int>();
+        static List<int> checkPlayer = new List<int>();
 
         private static int chieu_rong;
         private static int chieu_cao;
 
         private Banco _BanCo;
+
         public  Caro (int chieu_rong, int chieu_cao)
         {
             _BanCo = new Banco(chieu_rong, chieu_cao);
             Caro.chieu_rong = chieu_rong;
             Caro.chieu_cao = chieu_cao;
         }
+
+        // gán tất cả các ô là 1
         public void check(int soDong,int soCot)
         {
             keHuyDiet = new int[soDong, soCot];
@@ -57,6 +60,8 @@ namespace CoCaro
                     {
                         new_x = OCo._ChieuRong * (i - 1);
                         new_y = OCo._ChieuCao * (j - 1);
+
+                        // ô nào được vẽ thì gán 2
                         if (keHuyDiet[i - 1, j - 1] == 1)
                         {
                             keHuyDiet[i - 1, j - 1] = 2;
@@ -79,6 +84,7 @@ namespace CoCaro
                 X = new_x,
                 Y = new_y,
             };
+
             if (player == 1)
             {
                 g.DrawImage(player_x, rect);
@@ -100,8 +106,7 @@ namespace CoCaro
             {
                 playerO.Add(vi_tri);
             }
-            //checkPlayer.Add(vi_tri);
-            //MessageBox.Show(Convert.ToString(vi_tri));
+
             return vi_tri;
         }
 

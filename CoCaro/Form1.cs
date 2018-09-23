@@ -12,8 +12,8 @@ namespace CoCaro
         public static Graphics grs;
 
         // xac dinh so dong so cot
-        private int soDong = 9;
-        private int soCot = 9;
+        public static int soDong = 9;
+        public static int soCot = 9;
 
         // player turn
         public static int turn = 0;
@@ -21,7 +21,8 @@ namespace CoCaro
         public List<int> KeHuyDiet = new List<int>();
 
         // check player name join
-        Thread checkPlayerNameThread = null;
+        private static Thread checkPlayerNameThread = null;
+        private static bool getNameStop = false;
 
         public Form1()
         {
@@ -51,7 +52,7 @@ namespace CoCaro
 
         private void GetPlayerName()
         {
-            while(true)
+            while(!getNameStop)
             {
                 // đặt hostname
                 Invoke((MethodInvoker)delegate ()
@@ -78,20 +79,31 @@ namespace CoCaro
         {
             if (turn % 2 == 0 && FormLogin.player == 1) //if turn is even
             {
+                // hiển thị nước đánh
                 Point point = e.Location;
                 int vi_tri = Caro.DanhCo(point.X, point.Y, FormLogin.player, grs);
-                LAN.SendData("set:play:" + FormLogin.player + ":" + point.X + ":" + point.Y);
-                //MessageBox.Show("next turn: " + Convert.ToString(turn));
 
+                
+
+                // kiểm tra win
                 if (vi_tri != 0)
                 {
+                    // gửi thông tin cho người chơi còn lại biết mày vừa đánh ở đâu
+                    LAN.SendData("set:play:" + FormLogin.player + ":" + point.X + ":" + point.Y);
+
                     bool win = caro.CheckWin(FormLogin.player, vi_tri);
                     KeHuyDiet.Add(vi_tri);
                     turn++;
 
                     if (win)
                     {
+                        // gửi cho thằng chơi cùng biết mày là người chiến thắng
+                        LAN.SendData("set:win:" + FormLogin.player);
+
+                        // hiển thị nếu mày là người chiến thắng
                         MessageBox.Show("Player " + FormLogin.player + " won");
+
+                        // tạo game mới
                         caro.NewGame(grs);
                         caro.vebanco(grs);
                         caro.check(soDong, soCot);
@@ -101,18 +113,24 @@ namespace CoCaro
             {
                 Point point = e.Location;
                 int vi_tri = Caro.DanhCo(point.X, point.Y, FormLogin.player, grs);
-                LAN.SendData("set:play:" + FormLogin.player + ":" + point.X + ":" + point.Y);
+                
 
                 if (vi_tri != 0)
                 {
+                    LAN.SendData("set:play:" + FormLogin.player + ":" + point.X + ":" + point.Y);
+
                     bool win = caro.CheckWin(FormLogin.player, vi_tri);
                     KeHuyDiet.Add(vi_tri);
                     turn++;
-                    //MessageBox.Show("next turn: " + Convert.ToString(turn));
 
                     if (win)
                     {
+                        // gửi cho thằng chơi cùng biết mày là người chiến thắng
+                        LAN.SendData("set:win:" + FormLogin.player);
+
+                        // hiển thị nếu mày là người chiến thắng
                         MessageBox.Show("Player " + FormLogin.player + " won");
+
                         caro.NewGame(grs);
                         caro.vebanco(grs);
                         caro.check(soDong, soCot);
@@ -130,7 +148,21 @@ namespace CoCaro
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            checkPlayerNameThread.Abort();
+            //getNameStop = true;
+            //Thread.Sleep(100);
+            //LAN.CloseConnect();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosedEventArgs e)
+        {
+            getNameStop = true;
+            Thread.Sleep(100);
+            LAN.CloseConnect();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

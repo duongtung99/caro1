@@ -25,17 +25,21 @@ namespace CoCaro
         private const string broadCastAddress = "255.255.255.255";
 
         // init receiver
-        private static UdpClient receivingClient;
-        private static UdpClient waitForClient;
+        private static UdpClient receivingClient = null;
+        private static UdpClient waitForClient = null;
 
         // init sender
-        private static UdpClient sendingClient;
-        private static UdpClient helloHost;
+        private static UdpClient sendingClient = null;
+        private static UdpClient helloHost = null;
 
         // tạo thread riêng cho việc nhận data
-        private static Thread receivingThread;
-        private static Thread waitClientThread;
-        //private static Thread getHostnameThread;
+        private static Thread receivingThread = null;
+        private static Thread waitClientThread = null;
+
+        // lưu giá trị để shutdown thread khi cần
+        private static bool waitClientStop = false;
+        private static bool receiverStop = false;
+
 
         // lấy ip trong mạng lan
         public static void GetLocalIp()
@@ -46,6 +50,7 @@ namespace CoCaro
             localIP = endPoint.Address.ToString();
         }
 
+        // chào host
         public static void InitHelloHost(string sendtoIP)
         {
             helloHost = new UdpClient(sendtoIP, hello_port);
@@ -57,21 +62,41 @@ namespace CoCaro
             helloHost.Close();
         }
 
+        // đợi kết nối từ client
         public static void InitWaitForClient()
         {
-            waitForClient = new UdpClient(hello_port);
+            if (waitForClient == null)
+            {
+                waitForClient = new UdpClient(hello_port);
 
-            ThreadStart start = new ThreadStart(WaitForClient);
-            waitClientThread = new Thread(start);
-            waitClientThread.IsBackground = true;
-            waitClientThread.Start();
+                if (waitClientThread == null)
+                {
+                    ThreadStart start = new ThreadStart(WaitForClient);
+                    waitClientThread = new Thread(start);
+                    waitClientThread.IsBackground = true;
+                    waitClientThread.Start();
+                } else
+                {
+                    // dừng waitClientThread nếu đang chạy
+                    waitClientStop = true;
+
+                    // nghỉ giải lao 0.1s
+                    Thread.Sleep(100);
+
+                    // chạy thread mới
+                    ThreadStart start = new ThreadStart(WaitForClient);
+                    waitClientThread = new Thread(start);
+                    waitClientThread.IsBackground = true;
+                    waitClientThread.Start();
+                }
+            }
         }
 
         public static void WaitForClient()
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, hello_port);
 
-            while (true)
+            while (!waitClientStop)
             {
                 byte[] data = waitForClient.Receive(ref endPoint);
                 string message = Encoding.ASCII.GetString(data);
@@ -87,7 +112,6 @@ namespace CoCaro
                     SendData("hello_form_host");
 
                     waitForClient.Close();
-                    waitClientThread.Abort();
                     break;
                 }
             }
@@ -96,29 +120,61 @@ namespace CoCaro
         // khởi tạo sender
         public static void InitSender(string sendtoIP)
         {
-            sendingClient = new UdpClient(sendtoIP, port);
-            sendingClient.EnableBroadcast = true;
+            if (sendingClient == null)
+            {
+                sendingClient = new UdpClient(sendtoIP, port);
+                sendingClient.EnableBroadcast = true;
+            } else
+            {
+                // đóng kết nối hiện tại
+                sendingClient.Close();
+
+                // mở kết nối mới
+                sendingClient = new UdpClient(sendtoIP, port);
+                sendingClient.EnableBroadcast = true;
+            }
         }
 
         // khởi tạo receiver
         public static void InitReceiver(string listentoIP)
         {
-            receivingClient = new UdpClient(port);
-            receivingIP = listentoIP;
+            if (receivingClient == null)
+            {
+                receivingClient = new UdpClient(port);
+                receivingIP = listentoIP;
+                if (receivingThread == null)
+                {
+                    ThreadStart start = new ThreadStart(Receiver);
+                    receivingThread = new Thread(start);
+                    receivingThread.IsBackground = true;
+                    receivingThread.Start();
+                }
+                else
+                {
+                    // dừng waitClientThread nếu đang chạy
+                    receiverStop = true;
 
-            ThreadStart start = new ThreadStart(Receiver);
-            receivingThread = new Thread(start);
-            receivingThread.IsBackground = true;
-            receivingThread.Start();
+                    // nghỉ giải lao 0.1s
+                    Thread.Sleep(100);
+
+                    // chạy thread mới
+                    ThreadStart start = new ThreadStart(Receiver);
+                    receivingThread = new Thread(start);
+                    receivingThread.IsBackground = true;
+                    receivingThread.Start();
+                }
+            }
         }
 
         private static void Receiver()
         {
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(receivingIP), port);
 
-            while (true)
+            while (!receiverStop)
             {
+
                 byte[] data = receivingClient.Receive(ref endPoint);
+                
                 string message = Encoding.ASCII.GetString(data);
 
                 // get host player name: "get:hostname"
@@ -152,6 +208,14 @@ namespace CoCaro
                                 Form1.turn++;
                                 //MessageBox.Show(Convert.ToString(Form1.turn));
                                 break;
+                            case "win":
+                                MessageBox.Show("Player " + mess_code[2] + " won");
+
+                                Caro caro = new Caro(Form1.soDong, Form1.soCot);
+                                caro.NewGame(Form1.grs);
+                                caro.vebanco(Form1.grs);
+                                caro.check(Form1.soDong, Form1.soCot);
+                                break;
                         }
                         break;
                     case "get":
@@ -166,11 +230,21 @@ namespace CoCaro
             }
         }
 
-        public static int SendData(string mess)
+        public static void SendData(string mess)
         {
             byte[] send_test = Encoding.ASCII.GetBytes(mess);
-            int res = sendingClient.Send(send_test, send_test.Length);
-            return res;
+            sendingClient.Send(send_test, send_test.Length);
+        }
+
+        public static void CloseConnect()
+        {
+            waitClientStop = true;
+            Thread.Sleep(100);
+            receiverStop = true;
+            Thread.Sleep(100);
+            receivingClient.Close();
+            Thread.Sleep(100);
+            sendingClient.Close();
         }
     }
 }
