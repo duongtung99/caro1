@@ -95,7 +95,7 @@ namespace CoCaro
             }
 
             // lưu vị trí theo thứ tự 1-> 81 vào List
-            int vi_tri = (new_x + new_y * chieu_rong + 60) / 60;
+            int vi_tri = (new_x + new_y * chieu_rong + OCo._ChieuRong) / OCo._ChieuRong;
 
             // lưu vị trí người đánh vào list của ng đó
             if (player == 1)
