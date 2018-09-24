@@ -84,8 +84,6 @@ namespace CoCaro
                 Point point = e.Location;
                 int vi_tri = Caro.DanhCo(point.X, point.Y, FormLogin.player, grs);
 
-                
-
                 // kiểm tra win
                 if (vi_tri != 0)
                 {
@@ -114,7 +112,6 @@ namespace CoCaro
             {
                 Point point = e.Location;
                 int vi_tri = Caro.DanhCo(point.X, point.Y, FormLogin.player, grs);
-                
 
                 if (vi_tri != 0)
                 {
